@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: jenkins-server
+    restart: unless-stopped
+
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+
+    volumes:
+      - /data/jenkins:/var/jenkins_home
